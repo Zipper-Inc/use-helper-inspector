@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "license": "MIT",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
@@ -19,12 +19,12 @@
     "node": ">=14"
   },
   "scripts": {
-    "bundle": "tsup src/index.ts --format=esm",
+    "bundle": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
     "vitest": "vitest",
     "vitest:preview": "vitest-preview"
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 120,
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
