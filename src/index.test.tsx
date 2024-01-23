@@ -13,7 +13,6 @@ function MockHelpModeComponent() {
   )
 }
 
-// Test suite
 describe('HelpModeProvider and hooks', () => {
   test('provides correct initial context values', () => {
     const { getByText } = render(
