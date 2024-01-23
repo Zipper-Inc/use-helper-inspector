@@ -21,7 +21,7 @@
   "scripts": {
     "bundle": "tsup src/index.ts --format=esm",
     "vitest": "vitest",
-    "vitest-preview": "vitest-preview"
+    "vitest:preview": "vitest-preview"
   },
   "prettier": {
     "printWidth": 80,
