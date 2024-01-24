@@ -23,7 +23,7 @@
     "bundle": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
     "vitest": "vitest",
     "vitest:preview": "vitest-preview",
-    "prepare": "bun bundle"
+    "postinstall": "bun bundle"
   },
   "prettier": {
     "printWidth": 120,
