@@ -18,7 +18,7 @@ interface HelpModeContextProps {
 
 const HelpModeContext = createContext<HelpModeContextProps | null>(null)
 
-interface InspectableComponents {
+export interface InspectableComponents {
   [key: string]: InspectableComponent
 }
 
