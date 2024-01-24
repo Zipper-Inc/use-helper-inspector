@@ -31,6 +31,6 @@ type HelpModeProviderP = {
     children: React.ReactNode;
     inspectableComponents: InspectableComponents;
 };
-declare const HelpModeProvider: ({ children, inspectableComponents, }: HelpModeProviderP) => React.JSX.Element;
+declare const HelpModeProvider: ({ children, inspectableComponents }: HelpModeProviderP) => React.JSX.Element;
 
-export { HelpModeProvider, useHelpBorder, useHelpMode };
+export { HelpModeProvider, type InspectableComponent, useHelpBorder, useHelpMode };

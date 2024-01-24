@@ -1,12 +1,6 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 
-interface InspectableComponent {
+export interface InspectableComponent {
   name: string
   description: string
 }
@@ -37,28 +31,18 @@ export const useHelpMode = () => {
 }
 
 export const useHelpBorder = () => {
-  const {
-    helpModeEnabled,
-    hoveredElement,
-    setHoveredElement,
-    setElementDescription,
-    inspectableComponents,
-  } = useHelpMode()
+  const { helpModeEnabled, hoveredElement, setHoveredElement, setElementDescription, inspectableComponents } =
+    useHelpMode()
 
   return {
     style: (componentName: string) => ({
-      border:
-        helpModeEnabled && hoveredElement === componentName
-          ? '4px solid #E5BEEB'
-          : '4px solid transparent',
+      border: helpModeEnabled && hoveredElement === componentName ? '4px solid #E5BEEB' : '4px solid transparent',
       boxSizing: 'border-box', // to prevent resizing of the elements when border is applied
     }),
     onMouseEnter: (componentName: string) => () => {
       if (helpModeEnabled) {
         setHoveredElement(componentName)
-        setElementDescription(
-          inspectableComponents[componentName]?.description || null
-        )
+        setElementDescription(inspectableComponents[componentName]?.description || null)
       }
     },
     onMouseLeave: () => () => {
@@ -74,15 +58,10 @@ type HelpModeProviderP = {
   children: React.ReactNode
   inspectableComponents: InspectableComponents
 }
-export const HelpModeProvider = ({
-  children,
-  inspectableComponents,
-}: HelpModeProviderP) => {
+export const HelpModeProvider = ({ children, inspectableComponents }: HelpModeProviderP) => {
   const [helpModeEnabled, setHelpModeEnabled] = useState<boolean>(false)
   const [inspectorEnabled, setInspectorEnabled] = useState<boolean>(false)
-  const [elementDescription, setElementDescription] = useState<string | null>(
-    null
-  )
+  const [elementDescription, setElementDescription] = useState<string | null>(null)
   const [hoveredElement, setHoveredElement] = useState<string | null>(null)
 
   const toggleInspectorMode = () => {

@@ -45,13 +45,7 @@ var useHelpMode = () => {
   return context;
 };
 var useHelpBorder = () => {
-  const {
-    helpModeEnabled,
-    hoveredElement,
-    setHoveredElement,
-    setElementDescription,
-    inspectableComponents
-  } = useHelpMode();
+  const { helpModeEnabled, hoveredElement, setHoveredElement, setElementDescription, inspectableComponents } = useHelpMode();
   return {
     style: (componentName) => ({
       border: helpModeEnabled && hoveredElement === componentName ? "4px solid #E5BEEB" : "4px solid transparent",
@@ -62,9 +56,7 @@ var useHelpBorder = () => {
       var _a;
       if (helpModeEnabled) {
         setHoveredElement(componentName);
-        setElementDescription(
-          ((_a = inspectableComponents[componentName]) == null ? void 0 : _a.description) || null
-        );
+        setElementDescription(((_a = inspectableComponents[componentName]) == null ? void 0 : _a.description) || null);
       }
     },
     onMouseLeave: () => () => {
@@ -75,15 +67,10 @@ var useHelpBorder = () => {
     }
   };
 };
-var HelpModeProvider = ({
-  children,
-  inspectableComponents
-}) => {
+var HelpModeProvider = ({ children, inspectableComponents }) => {
   const [helpModeEnabled, setHelpModeEnabled] = (0, import_react.useState)(false);
   const [inspectorEnabled, setInspectorEnabled] = (0, import_react.useState)(false);
-  const [elementDescription, setElementDescription] = (0, import_react.useState)(
-    null
-  );
+  const [elementDescription, setElementDescription] = (0, import_react.useState)(null);
   const [hoveredElement, setHoveredElement] = (0, import_react.useState)(null);
   const toggleInspectorMode = () => {
     setInspectorEnabled((prev) => !prev);
