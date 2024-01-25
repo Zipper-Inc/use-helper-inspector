@@ -1,5 +1,5 @@
 {
-  "name": "use-help-border",
+  "name": "@zipper-inc/use-inspector-guides",
   "version": "0.2.0",
   "license": "MIT",
   "main": "./dist/index.js",
