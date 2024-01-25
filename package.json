@@ -1,4 +1,5 @@
 {
+  "name": "use-help-border",
   "version": "0.2.0",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -7,7 +8,7 @@
     "./package.json": "./package.json",
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
   "typings": "dist/index.d.ts",
@@ -20,7 +21,7 @@
     "bun": ">=1.0.0"
   },
   "scripts": {
-    "bundle": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
+    "build": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
     "vitest": "vitest",
     "vitest:preview": "vitest-preview"
   },
@@ -30,9 +31,9 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "use-help-border",
   "author": "Zipper",
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.48",
     "jsdom": "^24.0.0",
