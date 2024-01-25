@@ -1,6 +1,6 @@
 *.log
 .DS_Store
 node_modules
-_dist
+dist
 tsconfig.tsbuildinfo
 .vitest-preview/index.html
