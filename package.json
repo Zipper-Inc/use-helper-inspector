@@ -1,9 +1,12 @@
 {
   "name": "@zipper-inc/use-inspector-guides",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -18,12 +21,14 @@
   ],
   "engines": {
     "node": ">=16",
-    "bun": ">=1.0.0"
+    "yarn": ">=1.22"
   },
   "scripts": {
     "build": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
     "vitest": "vitest",
-    "vitest:preview": "vitest-preview"
+    "vitest:preview": "vitest-preview",
+    "prepublishOnly": "yarn build",
+    "release": "np"
   },
   "prettier": {
     "printWidth": 120,
@@ -37,6 +42,7 @@
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.48",
     "jsdom": "^24.0.0",
+    "np": "^9.2.0",
     "tsup": "^8.0.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
