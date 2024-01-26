@@ -1,8 +1,8 @@
-### Introduction: Brief overview of the library.
+### Introduction
 
 This library aims to provide a simple and easy to create and handle interactions based on hover, like an inspector mode.
 
-### Installation: How to install the library.
+### Installation
 
 Install using the package manager of your choice.
 
@@ -20,7 +20,7 @@ bun add @zipper-inc/use-inspector-guides
 
 @zipper-inc/use-inspector-guides supports also ES modules as well as commonjs.
 
-### Usage and Examples: Basic usage and code examples.
+### Usage and Examples
 
 Once installed, you can import the library in your React App. It provides two hooks, `useHelpMode` and `useHelpBorder` taht should be used under the `HelpModeProvider` context.
 
@@ -79,7 +79,7 @@ const HeroBlogLinkListItem = () => {
 }
 ```
 
-### API Documentation: Detailed API reference.
+### API Documentation
 
 This section provides a comprehensive reference for the library's API.
 
