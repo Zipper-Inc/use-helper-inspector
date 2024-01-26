@@ -25,8 +25,8 @@
   },
   "scripts": {
     "build": "tsup src/index.tsx --format=esm,cjs --dts --sourcemap",
-    "vitest": "vitest",
-    "vitest:preview": "vitest-preview",
+    "test": "vitest",
+    "test:preview": "vitest-preview",
     "prepublishOnly": "yarn build",
     "release": "np"
   },
