@@ -1,14 +1,20 @@
-import { defineConfig } from 'vite'
-import path from 'path'
 import react from '@vitejs/plugin-react'
+import path from 'path'
+import { defineConfig } from 'vite'
 
 export default defineConfig((configEnv) => {
   const isDevelopment = configEnv.mode === 'development'
 
   return {
+    optimizeDeps: {
+      exclude: ['@zipper-inc/use-inspector-guide'],
+    },
     plugins: [react()],
     server: {
       port: 3000,
+      watch: {
+        ignored: ['!**/dist/**'],
+      },
     },
     test: {
       globals: true,
@@ -18,6 +24,7 @@ export default defineConfig((configEnv) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        '@zipper-inc/use-inspector-guide': path.resolve(__dirname, '../dist'),
       },
     },
     css: {

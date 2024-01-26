@@ -996,10 +996,8 @@
     loupe "^2.3.7"
     pretty-format "^29.7.0"
 
-"@zipper-inc/use-inspector-guides@^0.0.1":
+"@zipper-inc/use-inspector-guides@file:./..":
   version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@zipper-inc/use-inspector-guides/-/use-inspector-guides-0.0.1.tgz#567ded84a8aedb68b1b349c65f566e5c4bce3082"
-  integrity sha512-0s8krerdJU/WSh0AGEGOdFjCsleGQsNhucaOdUobOcT/dtoAn1RD9cP8pELTcfHYTv0hkkybg+bLD99s9cL1cA==
   dependencies:
     react "^18.2.0"
 

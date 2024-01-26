@@ -1,6 +1,6 @@
-import { ZipperIconSidebar } from './icons'
-import { ZipperIcon } from './icons'
-import { navigationLinks, blogPosts } from './data'
+import { useHelpBorder, useHelpMode } from '../../dist'
+import { blogPosts, navigationLinks } from './data'
+import { ZipperIcon, ZipperIconSidebar } from './icons'
 
 export function App() {
   return (
@@ -8,21 +8,93 @@ export function App() {
       <Header />
       <LatestPostsHeader />
 
-      <div data-theme="light" className="chakra-container css-1ag3fd2">
-        <div data-theme="light" className="css-1k7b95w">
-          <ul data-theme="light" className="css-sbhmhv">
-            <HeroBlogLinkListItem />
-            {blogPosts.map((post, index) => (
-              <BlogLinkListItem {...post} key={index} />
-            ))}
-          </ul>
-          <SidebarCallToAction />
-        </div>
+      <div
+        data-theme="light"
+        className="chakra-container css-1ag3fd2 css-1k7b95w"
+      >
+        <ul data-theme="light" className="css-sbhmhv">
+          <HeroBlogLinkListItem />
+          {blogPosts.map((post) => (
+            <BlogLinkListItem {...post} key={post.title} />
+          ))}
+        </ul>
+        <SidebarCallToAction />
       </div>
-      {Footer}
+
+      <Footer />
+      <HelpFLoatButton />
     </Container>
   )
 }
+
+const HelpFLoatButton = () => {
+  const { toggleHelpMode } = useHelpMode()
+  return (
+    <div className="relative z-10">
+      <div className="fixed bottom-4 left-4">
+        <button
+          onClick={toggleHelpMode}
+          type="button"
+          className="chakra-button chakra-menu__menu-button css-i8yawa"
+          aria-label="Options"
+          id="menu-button-:R1jmknl6H1:"
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-controls="menu-list-:R1jmknl6H1:"
+        >
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth={0}
+            fontSize={64}
+            viewBox="0 0 256 256"
+            color="#9b26b6"
+            aria-hidden="true"
+            focusable="false"
+            style={{ color: '#9b26b6' }}
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z"
+              opacity="0.2"
+            />
+            <path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+          </svg>
+        </button>
+        <FloatInspectorCard />
+      </div>
+    </div>
+  )
+}
+
+const FloatInspectorCard = () => {
+  const {
+    helpModeEnabled,
+    hoveredElement,
+    elementDescription,
+    inspectableComponents,
+  } = useHelpMode()
+  if (!helpModeEnabled) return null
+
+  return (
+    <div className="absolute bottom-[70%] left-[70%] bg-white shadow-md p-4 min-w-64">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-purple-600 text-sm flex-1">Inspect UI</h2>
+      </div>
+      <p className="text-black font-bold text-md mb-2">
+        {hoveredElement ? inspectableComponents[hoveredElement]?.name : ''}
+      </p>
+      <p className="text-gray-600 text-sm">
+        {elementDescription
+          ? elementDescription
+          : 'Hover over the interface to learn more about what it does.'}
+      </p>
+    </div>
+  )
+}
+
 const Container = (props) => (
   <main data-theme="light" className="css-jpxs0y">
     <div data-theme="light" className="css-y74e8c" />
@@ -32,8 +104,17 @@ const Container = (props) => (
   </main>
 )
 const Header = () => {
+  const helpBorder = useHelpBorder()
   return (
-    <header data-theme="light" className="chakra-container css-1a3qksv">
+    <header
+      data-theme="light"
+      className="chakra-container css-1a3qksv"
+      onMouseEnter={helpBorder.onMouseEnter('nav')}
+      onMouseLeave={helpBorder.onMouseLeave()}
+      style={{
+        border: helpBorder.style('nav').border,
+      }}
+    >
       <a
         data-theme="light"
         className="chakra-link css-spn4bz"
@@ -83,8 +164,17 @@ const LatestPostsHeader = () => {
   )
 }
 const Footer = () => {
+  const helpBorder = useHelpBorder()
   return (
-    <footer data-theme="light" className="chakra-stack css-1yxzzu5">
+    <footer
+      data-theme="light"
+      className="chakra-stack css-1yxzzu5"
+      onMouseEnter={helpBorder.onMouseEnter('footer')}
+      onMouseLeave={helpBorder.onMouseLeave()}
+      style={{
+        border: helpBorder.style('footer').border,
+      }}
+    >
       <section data-theme="light" className="chakra-stack css-cnqalw">
         <div data-theme="light" className="chakra-container css-vn5aes">
           <div data-theme="light" className="chakra-stack css-1r6ucjt">
@@ -241,8 +331,17 @@ const SidebarCallToAction = () => {
 }
 
 const HeroBlogLinkListItem = () => {
+  const { onMouseEnter, onMouseLeave, style } = useHelpBorder()
   return (
-    <li data-theme="light" className="post-item css-1j2a2ms">
+    <li
+      data-theme="light"
+      className="post-item css-1j2a2ms"
+      onMouseEnter={onMouseEnter('blog-post')}
+      onMouseLeave={onMouseLeave()}
+      style={{
+        border: style('blog-post').border,
+      }}
+    >
       <span data-theme="light" className="css-l4byuy" />
 
       <div data-theme="light" className="css-dycifs">
@@ -289,8 +388,17 @@ function BlogLinkListItem(props: {
   description: string
   link: string
 }) {
+  const { onMouseEnter, onMouseLeave, style } = useHelpBorder()
   return (
-    <li data-theme="light" className="post-item css-1exw413">
+    <li
+      data-theme="light"
+      className="post-item css-1exw413"
+      onMouseLeave={onMouseLeave()}
+      onMouseEnter={onMouseEnter('blog-post')}
+      style={{
+        border: style('blog-post').border,
+      }}
+    >
       <div data-theme="light" className="css-dycifs">
         <time
           className="nx-text-sm dark:nx-text-gray-400 nx-text-gray-400"

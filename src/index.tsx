@@ -25,7 +25,7 @@ export interface InspectableComponents {
 export const useHelpMode = () => {
   const context = useContext(HelpModeContext)
   if (context === null) {
-    throw new Error('useHelpMode must be used within a HelpModeProvider')
+    throw new Error('useHelpMode must be used within a HelpModeProvider!!!')
   }
   return context
 }

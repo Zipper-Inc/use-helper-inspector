@@ -1527,7 +1527,6 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   width: var(--chakra-sizes-full);
-  padding-top: var(--chakra-space-20);
   padding-bottom: var(--chakra-space-20);
   gap: var(--chakra-space-2);
 }
@@ -1536,12 +1535,6 @@ body {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-  }
-}
-@media screen and (min-width: 62em) {
-  .css-1ag3fd2 {
-    padding-top: var(--chakra-space-24);
-    padding-bottom: var(--chakra-space-24);
   }
 }
 .css-1k7b95w {

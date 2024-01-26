@@ -62,7 +62,5 @@
   },
   "name": "example",
   "author": "antoniel",
-  "dependencies": {
-    "@zipper-inc/use-inspector-guides": "^0.0.1"
-  }
+  "dependencies": {}
 }
