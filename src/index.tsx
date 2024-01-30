@@ -14,6 +14,7 @@ interface HelpModeContextProps {
   setElementDescription: (description: string | null) => void
   hoveredElement: string | null
   setHoveredElement: React.Dispatch<React.SetStateAction<string | null>>
+  styleOnHover: React.CSSProperties
 }
 
 const HelpModeContext = createContext<HelpModeContextProps | null>(null)
@@ -31,13 +32,20 @@ export const useHelpMode = () => {
 }
 
 export const useHelpBorder = () => {
-  const { helpModeEnabled, hoveredElement, setHoveredElement, setElementDescription, inspectableComponents } =
-    useHelpMode()
+  const {
+    helpModeEnabled,
+    hoveredElement,
+    setHoveredElement,
+    setElementDescription,
+    inspectableComponents,
+    styleOnHover = {},
+  } = useHelpMode()
 
   return {
-    style: (componentName: string) => ({
+    style: (componentName: string): React.CSSProperties => ({
       border: helpModeEnabled && hoveredElement === componentName ? '4px solid #E5BEEB' : '4px solid transparent',
       boxSizing: 'border-box', // to prevent resizing of the elements when border is applied
+      ...styleOnHover,
     }),
     onMouseEnter: (componentName: string) => () => {
       if (helpModeEnabled) {
@@ -57,8 +65,13 @@ export const useHelpBorder = () => {
 type HelpModeProviderP = {
   children: React.ReactNode
   inspectableComponents: InspectableComponents
+  styleOnHover?: React.CSSProperties
 }
-export const HelpModeProvider = ({ children, inspectableComponents }: HelpModeProviderP) => {
+export const HelpModeProvider = ({
+  children,
+  inspectableComponents,
+  styleOnHover = { border: '4px solid #E5BEEB' },
+}: HelpModeProviderP) => {
   const [helpModeEnabled, setHelpModeEnabled] = useState<boolean>(false)
   const [inspectorEnabled, setInspectorEnabled] = useState<boolean>(false)
   const [elementDescription, setElementDescription] = useState<string | null>(null)
@@ -102,6 +115,7 @@ export const HelpModeProvider = ({ children, inspectableComponents }: HelpModePr
         hoveredElement,
         setHoveredElement,
         inspectableComponents,
+        styleOnHover,
       }}
     >
       {children}

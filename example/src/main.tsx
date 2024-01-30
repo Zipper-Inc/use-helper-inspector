@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HelpModeProvider, InspectableComponents } from '../../dist'
+import { HelpModeProvider, InspectableComponents } from '../../src'
 import { App } from './app'
 import './index.css'
 
